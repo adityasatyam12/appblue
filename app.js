@@ -3,6 +3,12 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
+// HEALTH CHECK ENDPOINT (Very Important for Front Door)
+app.get('/health', (req, res) => {
+  res.status(200).send('Healthy');
+});
+
+// HOME PAGE
 app.get('/', (req, res) => {
   res.send(`
     <h1>Hello from Node.js running on Azure App Service! APP1-PRIMARY🚀</h1>
@@ -11,6 +17,7 @@ app.get('/', (req, res) => {
   `);
 });
 
+// START SERVER
 app.listen(port, () => {
   console.log(`Server is running → http://localhost:${port}`);
 });
